@@ -1,7 +1,7 @@
 FillWindow
 ==========
 
-Ett jQuery plugin som får ett element att fylla webbläsarfönstret. Välj ett förhållande som elementet ska behålla. Optimerat för HTML5 Canvas.
+FillWindow är ett jQuery plugin som får ett element att fylla webbläsarfönstret. Välj ett förhållande som elementet ska behålla. Optimerat för HTML5 Canvas.
 
 ###Exempel
 HTML:
