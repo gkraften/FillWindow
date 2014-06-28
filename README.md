@@ -39,3 +39,5 @@ $("#canv").toggleFullscreen(2/1);
 //Växla fullskärmsläge och fyll hela fönstret
 $("#canv").toggleFullscreen(-1);
 ```
+
+För att ta reda på elementets storlek bör du använda ```$("#canv").attr("width")``` och ```$("#canv").attr("height")```
