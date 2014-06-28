@@ -5,7 +5,7 @@
             $ele.data({
                 width: $ele.width(),
                 height: $ele.height(),
-                overflow: $ele.css("overflow"),
+                overflow: $ele.css("overflow")
             });
             console.log("hej");
         }
