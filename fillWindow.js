@@ -1,13 +1,32 @@
 (function($) {
-    $.fn.fullscreen = function(ratio) {
+    $.fn.fullscreen = function(ratio, background) {
         var $ele = this;
+        if (background) {
+            var eles = [];
+            $("body").find("*").not($ele).each(function(index, ele) {
+                var $elem = $(ele);
+                if ($elem.css("display") !== "none") {
+                    $elem.data("display", $elem.css("display"));
+                    eles.push($elem);
+                    $elem.css("display", "none");
+                }
+            });
+            
+            var bg = $("body").css("background");
+            $("body").css("background", background);
+            
+            $ele.data({
+                hidden: eles,
+                background: bg
+            });
+        }
+        
         if ($ele.data("fullscreen") === undefined) {
             $ele.data({
                 width: $ele.width(),
                 height: $ele.height(),
                 overflow: $ele.css("overflow")
             });
-            console.log("hej");
         }
         $ele.data("fullscreen", true)
         
@@ -23,6 +42,16 @@
     
     $.fn.exitFullscreen = function() {
         var $ele = this;
+        if (typeof $ele.data("hidden") !== 'undefined' || typeof $ele.data("background") !== 'undefined') {
+            $("body").css("background", $ele.data("background"));
+            $ele.data("hidden").forEach(function(ele) {
+                ele.css("display", ele.data("display"));
+                ele.removeData("display");
+            });
+            $ele.removeData("hidden");
+            $ele.removeData("background");
+        }
+        
         $ele.css({
             overflow: $ele.data("overflow"),
             position: "initial"
@@ -34,11 +63,11 @@
         return this;
     };
     
-    $.fn.toggleFullscreen = function(ratio) {
+    $.fn.toggleFullscreen = function(ratio, background) {
        if (this.data("fullscreen"))
-            this.exitFullscreen();
+            return this.exitFullscreen();
         else
-            this.fullscreen(ratio);
+            return this.fullscreen(ratio, background);
     };
     
     $.fn.attrWidth = function(w) {
