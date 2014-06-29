@@ -39,5 +39,13 @@ $("#canv").toggleFullscreen(2/1);
 //Växla fullskärmsläge och fyll hela fönstret
 $("#canv").toggleFullscreen(-1);
 ```
-
 För att ta reda på elementets storlek bör du använda ```$("#canv").attr("width")``` och ```$("#canv").attr("height")```
+
+Du kan även välja en bakgrund till delarna utanför elementet. Detta gör även att alla andra element döljs så att man inte kan scrolla.
+```javascript
+//Vilket CSS-värde till "background" som helst fungerar
+$("#canv").fullscreen(2/1, "red");
+
+//Eller t.ex
+$("#canv").fullscreen(2/1, "url(images/image.png)");
+```
