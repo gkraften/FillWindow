@@ -82,13 +82,14 @@
 function resized(e) {
     var canv = e.data.ele;
     var win = $(window);
+    var winRatio = win.width() / win.height();
+    
     if (e.data.ratio === -1) {
         canv.attrWidth(win.width());
         canv.attrHeight(win.height());
         return;
     }
     
-    var winRatio = win.width() / win.height();
     if (winRatio > e.data.ratio) {
         canv.attrHeight(win.height());
         canv.attrWidth(win.height() * e.data.ratio);
